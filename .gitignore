@@ -1,0 +1,11 @@
+.env
+*.pyc
+__pycache__/
+*.egg-info/
+.climpire-worktrees/
+.climpire/
+node_modules/
+dist/
+*.log
+media/
+staticfiles/
