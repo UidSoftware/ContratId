@@ -1,9 +1,11 @@
 #!/bin/sh
 set -e
 
-echo "Running migrations..."
-python manage.py makemigrations --noinput
+echo 'Running migrations...'
 python manage.py migrate --noinput
 
-echo "Starting server..."
+echo 'Collecting static files...'
+python manage.py collectstatic --noinput
+
+echo 'Starting server...'
 exec "$@"
