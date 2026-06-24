@@ -163,5 +163,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Autentique
 # ---------------------------------------------------------------------------
 AUTENTIQUE_TOKEN = config('AUTENTIQUE_TOKEN', default='')
+SYSTEMD_JWT_KEY  = config('SYSTEMD_JWT_KEY', default='')
 AUTENTIQUE_SANDBOX = config('AUTENTIQUE_SANDBOX', default=False, cast=bool)
 AUTENTIQUE_ENDPOINT = 'https://api.autentique.com.br/v2/graphql'
