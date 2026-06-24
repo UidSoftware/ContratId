@@ -26,4 +26,5 @@ jobs:
             git pull origin main
             docker compose build backend frontend
             docker compose up -d --remove-orphans
+            docker compose restart nginx
           '
