@@ -23,8 +23,12 @@ jobs:
           ssh -i ~/.ssh/deploy_key ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} '
             set -e
             cd /var/www/contratid
+
             git pull origin main
-            docker compose build backend frontend
-            docker compose up -d --remove-orphans
-            docker compose restart nginx
+
+            docker compose build frontend-builder backend
+
+            docker compose run --rm frontend-builder
+
+            docker compose up -d --remove-orphans backend nginx
           '
