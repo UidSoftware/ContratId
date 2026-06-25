@@ -21,7 +21,7 @@ export default function LoginPage() {
 
     try {
       const res = await api.post('/auth/login/', { email, password });
-      const { access, refresh, user } = res.data;
+      const { access, refresh, usuario: user } = res.data;
       setAuth(user, access, refresh);
       navigate('/contratid/', { replace: true });
     } catch (err) {
