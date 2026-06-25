@@ -5,12 +5,18 @@ import { useAuthStore } from '../stores/authStore.js';
 const SYSTEMD_ORIGIN = 'https://uidsoftware.com.br';
 
 export default function PrivateRoute({ children }) {
-  const { accessToken, setAuth } = useAuthStore();
-  const [ssoStatus, setSsoStatus] = useState('idle'); // idle | waiting | error
+  const { accessToken, setAuth, logout } = useAuthStore();
+  const [ssoStatus, setSsoStatus] = useState('idle');
   const inIframe = window !== window.top;
 
+  // Em iframe, sempre força SSO — ignora token armazenado (pode ser de sessão anterior)
+  const tokenEfetivo = inIframe ? null : accessToken;
+
   useEffect(() => {
-    if (accessToken || !inIframe) return;
+    if (!inIframe) return;
+
+    // Limpa token antigo para evitar redirecionamento para /login dentro do iframe
+    if (accessToken) logout();
 
     setSsoStatus('waiting');
 
@@ -39,9 +45,9 @@ export default function PrivateRoute({ children }) {
     window.parent.postMessage({ type: 'CONTRATID_READY' }, SYSTEMD_ORIGIN);
 
     return () => window.removeEventListener('message', handleMessage);
-  }, [accessToken, inIframe]);
+  }, [inIframe]);
 
-  if (accessToken) return children;
+  if (tokenEfetivo) return children;
 
   if (!inIframe) return <Navigate to="/contratid/login" replace />;
 
