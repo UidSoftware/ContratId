@@ -8,11 +8,13 @@ import {
   Menu,
   X,
   FileSignature,
+  ReceiptText,
 } from 'lucide-react';
 import { useAuthStore } from '../stores/authStore.js';
 
 const navItems = [
   { to: '/contratid/', label: 'Dashboard', icon: LayoutDashboard, end: true },
+  { to: '/contratid/orcamentos', label: 'Orçamentos', icon: ReceiptText },
   { to: '/contratid/contratos', label: 'Contratos', icon: FileText },
   { to: '/contratid/modelos', label: 'Modelos', icon: BookTemplate },
 ];

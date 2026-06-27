@@ -11,6 +11,7 @@ urlpatterns = [
     path('api/', include('apps.contratos.urls')),
     path('api/', include('apps.signatarios.urls')),
     path('api/webhook/', include('apps.autentique.urls')),
+    path('api/', include('apps.orcamentos.urls')),
 ]
 
 if settings.DEBUG:

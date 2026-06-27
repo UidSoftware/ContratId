@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'apps.contratos',
     'apps.signatarios',
     'apps.autentique',
+    'apps.orcamentos',
 ]
 
 MIDDLEWARE = [
